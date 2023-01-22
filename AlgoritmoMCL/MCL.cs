@@ -11,6 +11,8 @@ namespace MetodoCongruencialLineal.AlgoritmoMCL
     {
         public List <double> ListaNumerosAleatorios = new List<double>();
         public double NumeroDatosAleatorios;
+
+        //Constructor
         public MCL()
         {
         }
