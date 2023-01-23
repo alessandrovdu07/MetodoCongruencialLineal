@@ -15,6 +15,7 @@ namespace MetodoCongruencialLineal.AlgoritmoMCL
         //Constructor
         public MCL()
         {
+         
         }
 
         public List <double> GenerarListaAleatoria (double Semilla, double Multiplicador, double ConstanteAditiva, double Modulo) 

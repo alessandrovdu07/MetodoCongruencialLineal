@@ -25,7 +25,7 @@ namespace MetodoCongruencialLineal
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace MetodoCongruencialLineal
 
         }
 
-        public void llenarGrid(double NumeroDatosAleatorios, List<double> ListaNumerosAleatorios)
+        public void llenarGrid(double NumeroDatosAleatorios, MCL algoritmo)
         {
             string numeroColumna1 = "1";
             string numeroColumna2 = "2";
@@ -62,14 +62,10 @@ namespace MetodoCongruencialLineal
             for (int i = 0; i < NumeroDatosAleatorios; i++)
             {
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = ListaNumerosAleatorios[i];
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = i;
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = algoritmo.ListaNumerosAleatorios.ToString();
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = i.ToString();
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
