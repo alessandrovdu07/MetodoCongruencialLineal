@@ -37,10 +37,16 @@ namespace MetodoCongruencialLineal
                 }
 
 
-                double Semilla = Convert.ToDouble(textBox1.Text);
+                int Semilla = Convert.ToInt16(textBox1.Text);
                 double Multiplicador = Convert.ToDouble(textBox2.Text);
                 double ConstanteAditiva = Convert.ToDouble(textBox3.Text);
                 double Modulo = Convert.ToDouble(textBox4.Text);
+                if (Semilla > 0 && Multiplicador > 0 && ConstanteAditiva > 0 && Modulo > 0)
+                {
+                    MCL algoritmo = new MCL();
+                    List<double> lista = algoritmo.GenerarListaAleatoria(Semilla, Multiplicador, ConstanteAditiva, Modulo);
+                    llenarGrid(algoritmo.ListaNumerosAleatorios.Count(), algoritmo);
+                }
 
 
             }
