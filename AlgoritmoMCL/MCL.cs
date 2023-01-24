@@ -23,12 +23,16 @@ namespace MetodoCongruencialLineal.AlgoritmoMCL
             double NumeroDatosAleatorios;
 
             ListaNumerosAleatorios.Add(Semilla);
-            int n = Semilla;
-            //for (int n = 0; n < numeroDatos; n++)
-            while (n != ListaNumerosAleatorios[n])
+            //int n = Semilla;
+            for (int n = 0; n < numeroDatos; n++)
+            //while (n != ListaNumerosAleatorios[n])
             {
                 double SigNumeroAleatorio = ((Multiplicador * ListaNumerosAleatorios[n]) + ConstanteAditiva) % Modulo;
                 ListaNumerosAleatorios.Add(SigNumeroAleatorio);
+                if (SigNumeroAleatorio == Semilla) 
+                {
+                    break;
+                }
             }
 
             NumeroDatosAleatorios = ListaNumerosAleatorios.Count();
