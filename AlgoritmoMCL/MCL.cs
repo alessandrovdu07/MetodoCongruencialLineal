@@ -18,13 +18,14 @@ namespace MetodoCongruencialLineal.AlgoritmoMCL
          
         }
 
-        public List <double> GenerarListaAleatoria (int Semilla, double Multiplicador, double ConstanteAditiva, double Modulo) 
+        public List <double> GenerarListaAleatoria (int Semilla, double Multiplicador, double ConstanteAditiva, double Modulo, int numeroDatos) 
         {
             double NumeroDatosAleatorios;
 
             ListaNumerosAleatorios.Add(Semilla);
             int n = Semilla;
-            while (n == ListaNumerosAleatorios[n])
+            //for (int n = 0; n < numeroDatos; n++)
+            while (n != ListaNumerosAleatorios[n])
             {
                 double SigNumeroAleatorio = ((Multiplicador * ListaNumerosAleatorios[n]) + ConstanteAditiva) % Modulo;
                 ListaNumerosAleatorios.Add(SigNumeroAleatorio);

@@ -41,10 +41,16 @@ namespace MetodoCongruencialLineal
                 double Multiplicador = Convert.ToDouble(textBox2.Text);
                 double ConstanteAditiva = Convert.ToDouble(textBox3.Text);
                 double Modulo = Convert.ToDouble(textBox4.Text);
+                int numeroDatos = Convert.ToInt16(textBox5.Text);
+                if (Modulo < Semilla && Modulo < ConstanteAditiva && Modulo < Multiplicador)
+                {
+                    MessageBox.Show("Modulo Incorrecto");
+                    return;
+                }
                 if (Semilla > 0 && Multiplicador > 0 && ConstanteAditiva > 0 && Modulo > 0)
                 {
                     MCL algoritmo = new MCL();
-                    List<double> lista = algoritmo.GenerarListaAleatoria(Semilla, Multiplicador, ConstanteAditiva, Modulo);
+                    List<double> lista = algoritmo.GenerarListaAleatoria(Semilla, Multiplicador, ConstanteAditiva, Modulo, numeroDatos);
                     llenarGrid(algoritmo.ListaNumerosAleatorios.Count(), algoritmo);
                 }
 
@@ -68,7 +74,7 @@ namespace MetodoCongruencialLineal
             for (int i = 0; i < NumeroDatosAleatorios; i++)
             {
                 dataGridView1.Rows.Add();
-                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = algoritmo.ListaNumerosAleatorios.ToString();
+                dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna1) - 1].Value = algoritmo.ListaNumerosAleatorios[i].ToString();
                 dataGridView1.Rows[i].Cells[Int32.Parse(numeroColumna2) - 1].Value = i.ToString();
             }
         }
