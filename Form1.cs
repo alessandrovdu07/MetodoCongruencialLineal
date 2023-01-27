@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Microsoft.Office.Interop.Excel;
+using objExcel = Microsoft.Office.Interop.Excel;
 
 
 namespace MetodoCongruencialLineal
@@ -38,9 +40,9 @@ namespace MetodoCongruencialLineal
 
 
                 int Semilla = Convert.ToInt16(textBox1.Text);
-                double Multiplicador = Convert.ToDouble(textBox2.Text);
+                int Multiplicador = Convert.ToInt16(textBox2.Text);
                 double ConstanteAditiva = Convert.ToDouble(textBox3.Text);
-                double Modulo = Convert.ToDouble(textBox4.Text);
+                int Modulo = Convert.ToInt16(textBox4.Text);
                 int numeroDatos = Convert.ToInt16(textBox5.Text);
                 if (Modulo < Semilla && Modulo < ConstanteAditiva && Modulo < Multiplicador)
                 {
@@ -79,5 +81,38 @@ namespace MetodoCongruencialLineal
             }
         }
 
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            DescargaExcel(dataGridView1);
+        }
+        public void DescargaExcel(DataGridView data)
+        {
+            Microsoft.Office.Interop.Excel.Application exportarExcel = new Microsoft.Office.Interop.Excel.Application();
+            exportarExcel.Application.Workbooks.Add(true);
+            int indiceColumna = 0;
+            // Llenar (construir) encabezados
+            foreach (DataGridViewColumn columna in data.Columns)
+            {
+                indiceColumna = indiceColumna + 1;
+                exportarExcel.Cells[1, indiceColumna] = columna.HeaderText;
+            }
+            // Llenar filas
+
+            int indiceFila = 0;
+            foreach (DataGridViewRow fila in data.Rows)
+            {
+                indiceFila++;
+                indiceColumna = 0;
+                foreach (DataGridViewColumn columna in data.Columns)
+                {
+                    indiceColumna++;
+                    exportarExcel.Cells[indiceFila + 1, indiceColumna] = fila.Cells[columna.Name].Value;
+                }
+            }
+            exportarExcel.Visible = true;
+
+        }
+
+       
     }
 }
